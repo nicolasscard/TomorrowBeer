@@ -1,24 +1,38 @@
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { punkApiRequest } from '../../api/axios';
+import { usePunkApi } from '../../hooks/usePunkApi';
+import { FlatList } from 'react-native-gesture-handler';
+import { Beer } from '../../interfaces/punkApiResponse';
 
 const BeerListScreen = () => {
-
-  const getBeers = async () => {
-    const resp = await punkApiRequest.get('beers');
-    console.log('response: ', resp);
-  };
+  const { beers, isLoading, loadBeers } = usePunkApi();
 
   useEffect(() => {
-    getBeers();
+    loadBeers();
   }, []);
+
+  const renderItem = (item: Beer) => {
+    return (
+      <View>
+        <Text>{ item.name }</Text>
+      </View>
+    );
+  };
   
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Text>BeerListScreen</Text>
+      <Text style={{ fontWeight: 'bold', paddingBottom: 20 }}>BeerListScreen</Text>
+      {beers.length > 0 &&
+        <FlatList
+            data={beers}
+            renderItem={({item}) => renderItem(item)}
+            keyExtractor={(item) => item.id.toString()}
+            refreshing={isLoading}
+        />
+      }
     </SafeAreaView>
-  )
+  );
 }
 
 export default BeerListScreen;
