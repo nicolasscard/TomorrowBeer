@@ -16,7 +16,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
+import { NavigationContainer } from '@react-navigation/native';
 import {
   Colors,
   DebugInstructions,
@@ -32,6 +32,8 @@ type SectionProps = PropsWithChildren<{
 function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
+    <NavigationContainer>
+
     <View style={styles.sectionContainer}>
       <Text
         style={[
@@ -52,6 +54,7 @@ function Section({children, title}: SectionProps): JSX.Element {
         {children}
       </Text>
     </View>
+    </NavigationContainer>
   );
 }
 
