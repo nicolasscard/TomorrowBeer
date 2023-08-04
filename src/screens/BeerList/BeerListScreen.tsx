@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FlatList, Dimensions, Text, TouchableOpacity, View, Modal, Button, TextInput } from 'react-native';
+import { FlatList, Dimensions, Text, TouchableOpacity, View, Modal, Button, TextInput, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -68,6 +68,14 @@ const BeerListScreen = ({ route, navigation }: Props) => {
         <View style={{ flex: 1, padding: 50, justifyContent: 'center', alignItems: 'center' }}>
           <Text style={styles.textButton}>{"We did not find beers... =( "}</Text>
         </View>
+      }
+
+      {isLoading &&
+        <ActivityIndicator
+          style={styles.activityIndicator} 
+          color={ theme.colors.primary }
+          size={ 30 }
+        />
       }
 
       {!isLoading && 
