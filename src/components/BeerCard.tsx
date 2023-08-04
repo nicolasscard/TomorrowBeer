@@ -1,9 +1,10 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 
 import { FadeInImage } from './FadeInImage';
 import { Beer } from '../interfaces/punkApiResponse';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -14,10 +15,9 @@ interface Props {
 }
 
 export const BeerCard = ({ beer, onPress }: Props ) => {
-
-    const { id, name, ingredients: {malt, hops, yeast}, tagline} = beer;
+    const { theme: { colors } } = useContext( ThemeContext );
+    const { id, name, tagline } = beer;
     const ramdomPrice = Number(Math.random() * 90).toFixed(2);
-
     return (
         <TouchableOpacity
             activeOpacity={ 0.7 }
@@ -27,7 +27,7 @@ export const BeerCard = ({ beer, onPress }: Props ) => {
 
                 {/* Beer information */}
                 <View>
-                    <Text style={ styles.description}> 
+                    <Text style={{...styles.description, color: colors.secondary}}> 
                         {`${tagline}`}
                     </Text>
                     <Text style={ styles.title }>
@@ -45,7 +45,7 @@ export const BeerCard = ({ beer, onPress }: Props ) => {
                     <Text style={ styles.price }>
                         { `${ramdomPrice}` }
                     </Text>
-                    <Text style={ styles.currency }>
+                    <Text style={{...styles.currency, color: colors.primary} }>
                         { 'USD' }
                     </Text>
                 </View>
@@ -87,12 +87,10 @@ const styles = StyleSheet.create({
     },
     currency: {
         textAlign: 'center',
-        color: 'pink',
         fontWeight: 'bold',
     },
     description: {
         textAlign: 'center',
-        color: '#A5967D',
         fontWeight: 'bold',
     },
     price: {
