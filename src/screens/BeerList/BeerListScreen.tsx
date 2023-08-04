@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Dimensions, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { usePunkApi } from '../../hooks/usePunkApi';
 import { FlatList } from 'react-native-gesture-handler';
@@ -16,6 +16,9 @@ const BeerListScreen = () => {
   }, []);
 
   const onPressItem = (id: number) => {
+  };
+
+  const onPressFilter = () => {
   };
 
   const renderItem = (item: Beer) => {
@@ -40,8 +43,45 @@ const BeerListScreen = () => {
              }}
         />
       }
+
+      <TouchableOpacity
+          onPress={onPressFilter}
+          style={styles.button}
+          activeOpacity={ 0.6 }
+      >
+        <View style={{ position: 'absolute' }}>
+          <Text style={styles.textButton}>{'(*)'}</Text>
+        </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+    button: {
+      position: 'absolute',
+      backgroundColor: '#9F3A52',
+      width: windowWidth * 0.15,
+      height: windowWidth * 0.15,
+      borderRadius: windowWidth * 0.075,
+      right: windowWidth * 0.1,
+      top: windowWidth * 0.15,
+      justifyContent: 'center',
+      alignItems: 'center',
+
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowOpacity: 0.27,
+      shadowRadius: 4.65,
+      elevation: 6,
+    },
+    textButton: {
+      fontWeight: 'bold',
+      fontSize: 20,
+    },
+});
 
 export default BeerListScreen;
