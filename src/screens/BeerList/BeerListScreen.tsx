@@ -5,6 +5,7 @@ import { usePunkApi } from '../../hooks/usePunkApi';
 import { FlatList } from 'react-native-gesture-handler';
 import { Beer } from '../../interfaces/punkApiResponse';
 import { BeerCard } from '../../components/BeerCard';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -50,7 +51,11 @@ const BeerListScreen = () => {
           activeOpacity={ 0.6 }
       >
         <View style={{ position: 'absolute' }}>
-          <Text style={styles.textButton}>{'(*)'}</Text>
+          <Icon
+              name="filter"
+              color="white"
+              size={ windowWidth * 0.08 }
+          />
         </View>
       </TouchableOpacity>
     </SafeAreaView>
