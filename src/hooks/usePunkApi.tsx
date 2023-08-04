@@ -2,18 +2,15 @@ import { useState } from 'react';
 
 import { punkApiRequest } from '../api/axios'
 import { Beer } from '../interfaces/punkApiResponse';
-
-interface Params {
-  [key: string]: string | number;
-}
+import { Filters } from '../interfaces/Filters';
 
 export const usePunkApi = () => {
     const [ isLoading, setIsLoading ] = useState(false);
     const [ beers, setBeers ] = useState<Beer[]>([]);
 
-    const loadBeers = async (filters?: Params) => {
+    const loadBeers = async (filters?: Filters) => {
       setIsLoading(true);
-      let params: Params | undefined = undefined;
+      let params: Filters | undefined = undefined;
 
       if (filters) {
         params = {};

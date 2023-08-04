@@ -10,10 +10,14 @@ import { ThemeContext } from '../../context/themeContext/ThemeContext';
 import { beerListStyles } from './styles';
 import { ModalFilter } from '../../components/ModalFilter';
 import { Filters } from '../../interfaces/Filters';
+import { StackScreenProps } from '@react-navigation/stack';
+import { StackParams } from '../../routes/RootStackNavigator';
 
 const windowWidth = Dimensions.get('window').width;
 
-const BeerListScreen = () => {
+interface Props extends StackScreenProps<StackParams, 'BeerList'>{};
+
+const BeerListScreen = ({ route, navigation }: Props) => {
   const { beers, isLoading, loadBeers } = usePunkApi();
   const { theme } = useContext( ThemeContext );
   const styles = beerListStyles(theme);
@@ -28,9 +32,10 @@ const BeerListScreen = () => {
   }, []);
 
   const onPressItem = (id: number) => {
+    navigation.navigate('BeerDetail', {id});
   };
 
-  const applyFilters = (form: any) => {
+  const applyFilters = (form: Filters) => {
     loadBeers(form);
     setvalues(form);
     setIsVisible(false);

@@ -8,7 +8,7 @@ import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 export type StackParams = {
   BeerList: undefined,
-  BeerDetail: undefined,
+  BeerDetail: {id: number},
 }
 
 const Stack = createStackNavigator<StackParams>();

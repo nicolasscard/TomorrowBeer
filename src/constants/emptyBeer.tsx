@@ -1,0 +1,23 @@
+export const EMPTY_BEER = {
+    id:                0,
+    name:              '',
+    tagline:           '',
+    first_brewed:      '',
+    description:       '',
+    image_url:         '',
+    abv:               0,
+    ibu:               0,
+    target_fg:         0,
+    target_og:         0,
+    ebc:               0,
+    srm:               0,
+    ph:                0,
+    attenuation_level: 0,
+    volume:            { value: 0, unit: 'grams' },
+    boil_volume:        { value: 0, unit: 'grams' },
+    method:            { mash_temp: [], fermentation: [], twist: ''},
+    ingredients:       [],
+    food_pairing:      [],
+    brewers_tips:      '',
+    contributed_by:    { AliSkinnerAliSkinner: '', SamMasonSamjbmason: '' }
+};
