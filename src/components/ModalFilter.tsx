@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
-import { Button, Text, TextInput, View, Modal, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { Text, TextInput, View, Modal, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 
 import { useForm } from '../hooks/useForm';
 import { ThemeContext } from '../context/themeContext/ThemeContext';
 import { Filters } from '../interfaces/Filters';
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 interface Props {
     apply: (data: Filters) => void;
@@ -28,7 +27,6 @@ export const ModalFilter = ({ values, apply, isVisible, setIsVisible } : Props) 
         <View style={styles.modalBackground}>
           <View style={styles.modalContainer}>
               <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Filters</Text>
-
               <Text style={styles.label}>
                 Beers whose name contains the value:
               </Text>
@@ -56,17 +54,21 @@ export const ModalFilter = ({ values, apply, isVisible, setIsVisible } : Props) 
               />
 
               <View style={styles.buttonCard}>
-                <Button
-                  title="Close"
-                  color={colors.primary}
+                <TouchableOpacity
                   onPress={() => setIsVisible(false)}
-                />
+                  style={{ }}
+                  activeOpacity={ 0.6 }
+                  >
+                  <Text style={{...styles.textButton, color: colors.primary}}>
+                    Close
+                  </Text>
+                </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => apply(form)}
                     style={{ ...styles.applyButton, backgroundColor: colors.primary}}
                     activeOpacity={ 0.6 }
                     >
-                  <Text style={{ fontSize: 20, color: 'white', textAlign: 'center' }}>
+                  <Text style={{...styles.textButton, color: 'white'}}>
                     Apply
                   </Text>
                 </TouchableOpacity>
@@ -81,7 +83,6 @@ const styles = StyleSheet.create({
   modalContainer: {
       padding: 20,
       width: windowWidth * 0.8,
-      height: windowHeight * 0.7,
       backgroundColor: 'white',
       alignItems: 'stretch',
       shadowOffset: {
@@ -121,8 +122,12 @@ const styles = StyleSheet.create({
   },
   buttonCard: {
     flexDirection: 'row', 
-    justifyContent: 'space-between', 
+    justifyContent: 'space-around', 
     alignItems: 'center', 
-    marginTop: 20
-  }
+    marginTop: 20,
+  },
+  textButton: { 
+    fontSize: 20, 
+    textAlign: 'center'
+  },
 });

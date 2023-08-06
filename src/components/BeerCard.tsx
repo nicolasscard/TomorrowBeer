@@ -1,6 +1,6 @@
 
 import React, { useContext } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, Dimensions, Platform } from 'react-native';
 
 import { FadeInImage } from './FadeInImage';
 import { Beer } from '../interfaces/punkApiResponse';

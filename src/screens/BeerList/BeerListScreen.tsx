@@ -24,7 +24,7 @@ const BeerListScreen = ({ route, navigation }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
   const [values, setvalues] = useState<Filters>({ 
     beer_name: '',
-    ibu_gt: 0,
+    ibu_gt: '',
    })
 
   useEffect(() => {
@@ -61,6 +61,7 @@ const BeerListScreen = ({ route, navigation }: Props) => {
               marginHorizontal: windowWidth * 0.065, 
               marginVertical: windowWidth * 0.0325
              }}
+             showsVerticalScrollIndicator={false}
         />
       }
 

@@ -19,6 +19,21 @@ const DetailScreen = ({ route, navigation }: Props) => {
   const { theme } = useContext( ThemeContext );
   const styles = beerDetailStyles(theme);
 
+  const renderBackBbutton = () => {
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        activeOpacity={ 0.6 }
+    >
+      <Icon
+          name="chevron-left"
+          color={theme.colors.primary}
+          size={ windowWidth * 0.09 }
+      />
+    </TouchableOpacity>
+    );
+  };
+
   useEffect(() => {
     loadBeers({ids: route.params.id});
   }, []);
@@ -30,22 +45,9 @@ const DetailScreen = ({ route, navigation }: Props) => {
 
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background, padding: 20 }}>
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
 
-            {/* back button */}
-            <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                style={styles.primaryButton}
-                activeOpacity={ 0.6 }
-            >
-              <View style={{  }}>
-                <Icon
-                    name="chevron-left"
-                    color="white"
-                    size={ windowWidth * 0.09 }
-                />
-              </View>
-            </TouchableOpacity>
+            {renderBackBbutton()}
 
             {/* headers */}
             <View style={styles.header}>
@@ -78,7 +80,7 @@ const DetailScreen = ({ route, navigation }: Props) => {
             </View>
 
             {/* other information */}
-            <View style={styles.bottomContent}>
+            <View>
               <Text style={styles.descriptionText}>{brewers_tips}</Text>
               <Text style={{ ...styles.descriptionText, textAlign: 'center'}}>{contributed_by}</Text>
             </View>
@@ -88,15 +90,20 @@ const DetailScreen = ({ route, navigation }: Props) => {
     );
   }
   else {
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background, padding: 20 }}>
-      <ActivityIndicator 
-        style={{ flex: 1}} 
-        color={ theme.colors.primary }
-        size={ 30 }
-      />
-    </SafeAreaView>
-  }
+    return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background, padding: 20 }}>
+        {renderBackBbutton()}
 
+        {isLoading && 
+          <ActivityIndicator 
+            style={{ flex: 1 }} 
+            color={ theme.colors.primary }
+            size={ 30 }
+          />
+        }
+      </SafeAreaView>
+    );
+  }
 }
 
 export default DetailScreen;

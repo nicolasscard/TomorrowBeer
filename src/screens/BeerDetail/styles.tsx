@@ -44,24 +44,4 @@ export const beerDetailStyles = (theme: ThemeState) => StyleSheet.create({
     width: windowWidth * 0.4,
     height: windowHeight * 0.6,   
    },
-   bottomContent: {
-
-   },
-   primaryButton: {
-    backgroundColor: theme.colors.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: windowWidth * 0.12,
-    height: windowWidth * 0.12,
-    borderRadius: windowWidth * 0.075,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-    elevation: 6,
-    marginBottom: 20,
-  },
 });
