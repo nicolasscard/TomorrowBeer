@@ -1,4 +1,3 @@
-import 'react-native-vector-icons/mock';
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -17,6 +16,12 @@ const mockThemeContextValue = {
   setLightTheme: jest.fn(),
 };
 
+const mockUsePunkApiData = { 
+  beers: [], 
+  isLoading: false, 
+  loadBeers: jest.fn() 
+};
+
 jest.mock('react', () => {
   const React = jest.requireActual('react');
   return {
@@ -31,9 +36,11 @@ jest.mock('../../context/themeContext/ThemeContext', () => ({
   },
 }));
 
+jest.mock('../../hooks/usePunkApi', () => ({
+  usePunkApi: jest.fn(() => mockUsePunkApiData),
+}));
 
-describe('HomeScreen', () => {
-
+describe('BeerList',  () => {
     it('should render correctly', () => {
       jest.spyOn(React, 'useContext').mockReturnValue(mockThemeContextValue);
 

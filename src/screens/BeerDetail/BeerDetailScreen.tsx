@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Dimensions, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
+import { Dimensions, Text, TouchableOpacity, View, ActivityIndicator, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -10,7 +10,6 @@ import { ThemeContext } from '../../context/themeContext/ThemeContext';
 import { StackParams } from '../../routes/RootStackNavigator';
 import { beerDetailStyles } from './styles';
 import { FadeInImage } from '../../components/FadeInImage';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const windowWidth = Dimensions.get('window').width;
 interface Props extends StackScreenProps<StackParams, 'BeerDetail'>{};
